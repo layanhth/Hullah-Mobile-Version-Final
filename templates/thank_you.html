@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title data-ar="شكراً لك" data-en="Thank You">شكراً لك</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="feedback-page">
+
+
+  <div class="feedback-card thank-card">
+    <div class="thank-icon">✓</div>
+
+    <h1 data-ar="شكراً لكِ" data-en="Thank You">
+      شكراً لكِ
+    </h1>
+
+    <p
+      data-ar="تم إرسال تقييمك بنجاح وانتهت التجربة."
+      data-en="Your feedback has been submitted successfully and the experience is complete.">
+      تم إرسال تقييمك بنجاح وانتهت التجربة.
+    </p>
+
+    <a href="{{ url_for('home') }}"
+       class="finish-btn"
+       data-ar="العودة للرئيسية"
+       data-en="Back to Home">
+       العودة للرئيسية
+    </a>
+  </div>
+</div>
+
+<script>
+const langSwitch = document.getElementById("langSwitch");
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  if (lang === "en") {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    if (langSwitch) langSwitch.textContent = "AR";
+  } else {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
+    if (langSwitch) langSwitch.textContent = "EN";
+  }
+
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    el.textContent = lang === "en" ? el.dataset.en : el.dataset.ar;
+  });
+}
+
+if (langSwitch) {
+  langSwitch.addEventListener("click", function () {
+    const current = localStorage.getItem("lang") || "ar";
+    setLang(current === "ar" ? "en" : "ar");
+  });
+}
+
+setLang(localStorage.getItem("lang") || "ar");
+</script>
+
+<script>
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}
+
+applySavedTheme();
+</script>
+
+</body>
+</html>

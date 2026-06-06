@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HULLAH - منسق الإطلالات</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+          <h1 data-ar="حُلّة" data-en="HULLAH">حُلّة</h1>
+          <p data-ar="منسّق الإطلالات الذكي" data-en="Smart Outfit Coordinator">
+            منسّق الإطلالات الذكي
+          </p>
+        </div>
+      </div>
+      <nav class="links">
+          <a href="#about" data-ar="عن حُلّة" data-en="About HULLAH">عن حُلّة</a>
+          <a href="#features" data-ar="المميزات" data-en="Features">المميزات</a>
+          <a href="#system" data-ar="النظام" data-en="System">النظام</a>
+          <a href="/contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge"
+              data-ar="منصة ذكية لتنسيق الإطلالات النسائية"
+              data-en="Smart Platform for Women's Outfit Coordination">
+          منصة ذكية لتنسيق الإطلالات النسائية
+          </span>
+
+          <h2>
+            <span data-ar="اختاري إطلالتك" data-en="Choose Your Outfit">اختاري إطلالتك</span>
+            <span data-ar="بذكاء وجمال" data-en="Smartly and Elegantly">بذكاء وجمال</span>
+          </h2>
+          <p
+          data-ar="حُلّة يساعدك على اختيار إطلالة مناسبة بناءً على شكل الجسم، الوزن، الطول، المناسبة، النمط، والألوان المفضلة، ليمنحك اقتراحًا أنيقًا من بيانات أزياء حقيقية."
+          data-en="HULLAH helps you choose a suitable outfit based on body shape, weight, height, occasion, style, and preferred colors to provide an elegant suggestion from real fashion data.">
+          حُلّة يساعدك على اختيار إطلالة مناسبة بناءً على شكل الجسم، الوزن، الطول، المناسبة،
+          النمط، والألوان المفضلة، ليمنحك اقتراحًا أنيقًا من بيانات أزياء حقيقية.
+          </p>
+          <div class="buttons">
+            <a class="btn btn-primary"
+             href="#system"
+             data-ar="ابدئي الآن"
+             data-en="Start Now">
+            ابدئي الآن
+            </a>
+
+            <a class="btn btn-secondary"
+              href="#features"
+              data-ar="عرض المميزات"
+              data-en="View Features">
+              عرض المميزات
+            </a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+               <strong data-ar="ذكي" data-en="Smart">ذكي</strong>
+               <span data-ar="اقتراحات حسب بيانات المستخدم" data-en="Suggestions based on user data">
+                اقتراحات حسب بيانات المستخدم
+               </span>
+            </div>
+            <div class="stat">
+               <strong data-ar="عملي" data-en="Practical">عملي</strong>
+               <span data-ar="يعتمد على منتجات واقعية" data-en="Based on real products">
+                يعتمد على منتجات واقعية
+               </span>
+            </div>
+            <div class="stat">
+              <strong data-ar="رسمي" data-en="Professional">رسمي</strong>
+              <span data-ar="تصميم متناسق وواجهة جميلة" data-en="A coordinated design and beautiful interface">
+              تصميم متناسق وواجهة جميلة
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-preview">
+  <div class="mini-title"
+       data-ar="واجهة اقتراح الإطلالة"
+       data-en="Outfit Suggestion Interface">
+    واجهة اقتراح الإطلالة
+  </div>
+
+  <h3 data-ar="اقتراح مخصص لك" data-en="Personalized Suggestion">
+    اقتراح مخصص لك
+  </h3>
+
+  <div class="preview-box">
+    <div class="row">
+      <div class="field">
+        <label data-ar="المناسبة" data-en="Occasion">المناسبة</label>
+        <div data-ar="حفلة" data-en="Party">حفلة</div>
+      </div>
+
+      <div class="field">
+        <label data-ar="النمط" data-en="Style">النمط</label>
+        <div data-ar="أنيق" data-en="Elegant">أنيق</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label data-ar="شكل الجسم" data-en="Body Shape">شكل الجسم</label>
+        <div data-ar="ساعة رملية" data-en="Hourglass">ساعة رملية</div>
+      </div>
+
+      <div class="field">
+        <label data-ar="اللون" data-en="Color">اللون</label>
+        <div data-ar="بيج" data-en="Beige">بيج</div>
+      </div>
+    </div>
+
+    <div class="outfit-grid">
+      <div class="outfit-card">
+        <div class="img"></div>
+        <strong data-ar="طقم متناسق" data-en="Matching Set">طقم متناسق</strong>
+        <div data-ar="اقتراح أنيق ومتناسق" data-en="Elegant and coordinated suggestion">
+          اقتراح أنيق ومتناسق
+        </div>
+      </div>
+
+      <div class="outfit-card">
+        <div class="img"></div>
+        <strong data-ar="فستان ساتان" data-en="Satin Dress">فستان ساتان</strong>
+        <div data-ar="مظهر ناعم ورسمي" data-en="Soft and formal look">
+          مظهر ناعم ورسمي
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    </section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="panel">
+      <div class="mini-title"
+           data-ar="عن المشروع"
+           data-en="About the Project">
+        عن المشروع
+      </div>
+
+      <h3 data-ar="ما هي حُلّة؟" data-en="What is HULLAH?">
+        ما هي حُلّة؟
+      </h3>
+
+      <p
+        data-ar="حُلّة هو نظام توصية ذكي للإطلالات النسائية، يهدف إلى تسهيل اختيار الملابس من خلال فهم خصائص المستخدم وتفضيلاته، ثم مطابقتها مع عناصر أزياء حقيقية للحصول على اقتراح مناسب وواضح وأنيق."
+        data-en="HULLAH is an intelligent recommendation system for women's outfits. It aims to simplify clothing selection by understanding user characteristics and preferences, then matching them with real fashion items to provide a suitable, clear, and elegant suggestion.">
+        حُلّة هو نظام توصية ذكي للإطلالات النسائية، يهدف إلى تسهيل اختيار الملابس من خلال
+        فهم خصائص المستخدم وتفضيلاته، ثم مطابقتها مع عناصر أزياء حقيقية للحصول على اقتراح
+        مناسب وواضح وأنيق.
+      </p>
+    </div>
+
+    <div class="panel highlight">
+      <div class="mini-title alt"
+           data-ar="الرؤية"
+           data-en="Vision">
+        الرؤية
+      </div>
+
+      <h3 data-ar="موضة أقرب لك" data-en="Fashion Closer to You">
+        موضة أقرب لك
+      </h3>
+
+      <p
+        data-ar="نطمح إلى تقديم تجربة ذكية تجعل اختيار الإطلالة أسهل وأسرع وأكثر ثقة، من خلال دمج الجمال، التقنية، والتخصيص في واجهة نسائية جذابة وعصرية."
+        data-en="We aim to provide a smart experience that makes choosing an outfit easier, faster, and more confident by combining beauty, technology, and personalization in an attractive and modern interface for women.">
+        نطمح إلى تقديم تجربة ذكية تجعل اختيار الإطلالة أسهل وأسرع وأكثر ثقة، من خلال دمج
+        الجمال، التقنية، والتخصيص في واجهة نسائية جذابة وعصرية.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <section id="features">
+  <div class="container">
+    <div class="section-title">
+      <p data-ar="المميزات" data-en="Features">المميزات</p>
+
+      <h3 data-ar="لماذا حُلّة مميز؟" data-en="Why is HULLAH Special?">
+        لماذا حُلّة مميز؟
+      </h3>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon">♡</div>
+
+        <h4 data-ar="تخصيص ذكي" data-en="Smart Personalization">
+          تخصيص ذكي
+        </h4>
+
+        <p
+          data-ar="يعتمد على الطول، الوزن، شكل الجسم، المناسبة، النمط، والألوان المفضلة."
+          data-en="Based on height, weight, body shape, occasion, style, and preferred colors.">
+          يعتمد على الطول، الوزن، شكل الجسم، المناسبة، النمط، والألوان المفضلة.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">✿</div>
+
+        <h4 data-ar="واجهة أنيقة" data-en="Elegant Interface">
+          واجهة أنيقة
+        </h4>
+
+        <p
+          data-ar="تصميم ناعم وألوان أنثوية تمنح المستخدم تجربة مريحة وجميلة."
+          data-en="A soft design with feminine colors that gives the user a comfortable and pleasant experience.">
+          تصميم ناعم وألوان أنثوية تمنح المستخدم تجربة مريحة وجميلة.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">✦</div>
+
+        <h4 data-ar="بيانات حقيقية" data-en="Real Data">
+          بيانات حقيقية
+        </h4>
+
+        <p
+          data-ar="الاقتراحات مبنية على منتجات فعلية من ملفات بيانات الأزياء المتوفرة."
+          data-en="Suggestions are based on real products from the available fashion data files.">
+          الاقتراحات مبنية على منتجات فعلية من ملفات بيانات الأزياء المتوفرة.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section id="system" class="system-section">
+      <div class="container">
+        <div class="section-title">
+          <p data-ar="نظام التوصية" data-en="Recommendation System">نظام التوصية</p>
+          <h3 data-ar="ابدئي تنسيق إطلالتك" data-en="Start Coordinating Your Outfit">
+            ابدئي تنسيق إطلالتك
+          </h3>
+        </div>
+
+        <form method="POST" class="system-card">
+          <input type="hidden" name="regen" value="{{ request.form.get('regen', '0') }}">
+
+          <div class="form-grid">
+            <div class="input-box">
+              <label data-ar="الطول (سم)" data-en="Height (cm)">الطول (سم)</label>
+              <input type="number" name="height" min="130" max="200" value="{{ form.height }}" required>
+            </div>
+            <div class="input-box">
+              <label data-ar="الوزن (كجم)" data-en="Weight (kg)">الوزن (كجم)</label>
+              <input type="number" name="weight" min="35" max="150" value="{{ form.weight }}" required>
+            </div>
+            <div class="input-box">
+              <label data-ar="شكل الجسم" data-en="Body Shape">شكل الجسم</label>
+              <select name="body_shape">
+                {% for item in body_shapes %}
+                <option value="{{ item }}" {% if form.body_shape == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-box">
+              <label data-ar="المناسبة" data-en="Occasion">المناسبة</label>
+              <select name="occasion">
+                {% for item in occasions %}
+                <option value="{{ item }}" {% if form.occasion == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-box">
+              <label data-ar="نوع الإطلالة" data-en="Outfit Type">نوع الإطلالة</label>
+              <select name="look_type" onchange="toggleColorFields(this.value)">
+                {% for item in look_types %}
+                <option value="{{ item }}" {% if form.look_type == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-box">
+              <label data-ar="النمط" data-en="Style">النمط</label>
+              <select name="style">
+                {% for item in styles %}
+                <option value="{{ item }}" {% if form.style == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div id="dual-colors" class="form-grid">
+            <div class="input-box">
+              <label id="top-label"
+                 data-ar="اللون المفضل للقطعة العلوية"
+                 data-en="Preferred color for the top piece"> اللون المفضل للقطعة العلوية</label>
+              <select name="top_color">
+                {% for c in color_options.top %}
+                <option value="{{ c }}" {% if form.top_color == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-box">
+              <label id="bottom-label"
+                    data-ar="اللون المفضل للقطعة السفلية"
+                    data-en="Preferred color for the bottom piece">
+                اللون المفضل للقطعة السفلية
+              </label>
+              <select name="bottom_color" id="bottom-color-select"></select>
+            </div>
+          </div>
+
+          <div id="single-color-box" class="form-grid hidden">
+            <div class="input-box">
+              <label id="single-label"
+                    data-ar="اللون المفضل"
+                    data-en="Preferred color">
+                اللون المفضل
+              </label>
+              <select name="single_color" id="single-color-select"></select>
+            </div>
+          </div>
+
+          <div class="buttons center-buttons">
+            <button class="btn btn-primary" type="submit">
+              <span data-ar="إظهار الإطلالة" data-en="Show Outfit">إظهار الإطلالة</span>
+            </button>
+            {% if result %}
+            <button class="btn btn-secondary" type="submit" onclick="incrementRegen()">
+              <span data-ar="اقتراح إطلالة أخرى" data-en="Suggest Another Outfit">
+                اقتراح إطلالة أخرى
+              </span>
+            </button>
+            {% endif %}
+          </div>
+        </form>
+
+        {% if result %}
+        <div class="result-wrap">
+          <h3 class="result-title"
+              data-ar="الإطلالة المقترحة"
+              data-en="Suggested Outfit">
+            الإطلالة المقترحة
+          </h3>
+
+          {% if result.single %}
+          <div class="result-grid single-grid">
+            <div class="product-card">
+              <img src="{{ result.single.image_url }}" alt="">
+              <div class="product-body">
+                <h4>{{ result.single.title }}</h4>
+                {% if result.single.color %}
+                <p><span data-ar="اللون" data-en="Color">اللون</span>: {{ result.single.color }}</p>
+                {% endif %}
+                {% if result.single.style %}
+                <p><span data-ar="النمط" data-en="Style">النمط</span>: {{ result.single.style }}</p>
+                {% endif %}
+                {% if result.single.occasion %}
+                <p><span data-ar="المناسبة" data-en="Occasion">المناسبة</span>: {{ result.single.occasion }}</p>
+                {% endif %}
+                {% if result.single.is_curve_plus %}
+                <p data-ar="مناسب للأوزان الأكبر: نعم" data-en="Suitable for larger weights: Yes">
+                  مناسب للأوزان الأكبر: نعم
+                </p>
+                {% endif %}
+                {% if result.single.product_url %}
+                <a href="{{ result.single.product_url }}"
+                  target="_blank"
+                  data-ar="فتح المنتج"
+                  data-en="Open Product">
+                  فتح المنتج
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="result-grid">
+            {% if result.top %}
+            <div class="product-card">
+              <img src="{{ result.top.image_url }}" alt="">
+              <div class="product-body">
+                <h4>{{ result.top.title }}</h4>
+
+                {% if result.top.color %}
+                <p><span data-ar="اللون" data-en="Color">اللون</span>: {{ result.top.color }}</p>
+                {% endif %}
+
+                {% if result.top.style %}
+                <p><span data-ar="النمط" data-en="Style">النمط</span>: {{ result.top.style }}</p>
+                {% endif %}
+
+                {% if result.top.occasion %}
+                <p><span data-ar="المناسبة" data-en="Occasion">المناسبة</span>: {{ result.top.occasion }}</p>
+                {% endif %}
+
+                {% if result.top.is_curve_plus %}
+                <p data-ar="مناسب للأوزان الأكبر: نعم" data-en="Suitable for larger weights: Yes">
+                  مناسب للأوزان الأكبر: نعم
+                </p>
+                {% endif %}
+
+                {% if result.top.product_url %}
+                <a href="{{ result.top.product_url }}"
+                  target="_blank"
+                  data-ar="فتح المنتج"
+                  data-en="Open Product">
+                  فتح المنتج
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <div class="empty-card"
+                data-ar="لا توجد نتيجة مطابقة للقطعة العلوية."
+                data-en="No matching result for the top piece.">
+              لا توجد نتيجة مطابقة للقطعة العلوية.
+            </div>
+            {% endif %}
+
+            {% if result.bottom %}
+            <div class="product-card">
+              <img src="{{ result.bottom.image_url }}" alt="">
+              <div class="product-body">
+                <h4>{{ result.bottom.title }}</h4>
+
+
+                {% if result.bottom.color %}
+                <p><span data-ar="اللون" data-en="Color">اللون</span>: {{ result.bottom.color }}</p>
+                {% endif %}
+
+                {% if result.bottom.style %}
+                <p><span data-ar="النمط" data-en="Style">النمط</span>: {{ result.bottom.style }}</p>
+                {% endif %}
+
+                {% if result.bottom.occasion %}
+                <p><span data-ar="المناسبة" data-en="Occasion">المناسبة</span>: {{ result.bottom.occasion }}</p>
+                {% endif %}
+
+                {% if result.bottom.is_curve_plus %}
+                <p data-ar="مناسب للأوزان الأكبر: نعم" data-en="Suitable for larger weights: Yes">
+                  مناسب للأوزان الأكبر: نعم
+                </p>
+                {% endif %}
+
+                {% if result.bottom.product_url %}
+                <a href="{{ result.bottom.product_url }}"
+                  target="_blank"
+                  data-ar="فتح المنتج"
+                  data-en="Open Product">
+                  فتح المنتج
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <div class="empty-card"
+                data-ar="لا توجد نتيجة مطابقة للقطعة السفلية."
+                data-en="No matching result for the bottom piece.">
+              لا توجد نتيجة مطابقة للقطعة السفلية.
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+  </div>
+</section>
+</main>
+
+
+  <script>
+    const COLOR_OPTIONS = {
+      pants: {{ color_options.pants|tojson }},
+      skirt: {{ color_options.skirt|tojson }},
+      jumpsuit: {{ color_options.jumpsuit|tojson }},
+      dress: {{ color_options.dress|tojson }},
+      set: {{ color_options.set|tojson }}
+    };
+
+    function currentLang() {
+    return localStorage.getItem("lang") || "ar";
+  }
+
+    function fillSelect(selectEl, options, selectedValue) {
+      selectEl.innerHTML = "";
+      options.forEach(function(opt) {
+        const option = document.createElement("option");
+        option.value = opt;
+        option.textContent = opt;
+        if (opt === selectedValue) option.selected = true;
+        selectEl.appendChild(option);
+      });
+    }
+
+    function toggleColorFields(value) {
+      const dual = document.getElementById("dual-colors");
+      const single = document.getElementById("single-color-box");
+      const bottomLabel = document.getElementById("bottom-label");
+      const singleLabel = document.getElementById("single-label");
+      const bottomSelect = document.getElementById("bottom-color-select");
+      const singleSelect = document.getElementById("single-color-select");
+
+      const currentBottom = "{{ form.bottom_color }}";
+      const currentSingle = "{{ form.single_color }}";
+
+      if (value === "بلوزة + بنطالون") {
+      dual.classList.remove("hidden");
+      single.classList.add("hidden");
+      bottomLabel.textContent = lang === "en" ? "Preferred color for pants" : "اللون المفضل للبنطالون";
+      fillSelect(bottomSelect, COLOR_OPTIONS.pants, currentBottom);
+
+    } else if (value === "بلوزة + تنورة") {
+      dual.classList.remove("hidden");
+      single.classList.add("hidden");
+      bottomLabel.textContent = lang === "en" ? "Preferred color for skirt" : "اللون المفضل للتنورة";
+      fillSelect(bottomSelect, COLOR_OPTIONS.skirt, currentBottom);
+
+    } else if (value === "جمبسوت") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for jumpsuit" : "اللون المفضل للجمبسوت";
+      fillSelect(singleSelect, COLOR_OPTIONS.jumpsuit, currentSingle);
+
+    } else if (value === "فستان") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for dress" : "اللون المفضل للفستان";
+      fillSelect(singleSelect, COLOR_OPTIONS.dress, currentSingle);
+
+    } else if (value === "ماتشنق سيت") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for matching set" : "اللون المفضل للطقم المتناسق";
+      fillSelect(singleSelect, COLOR_OPTIONS.set, currentSingle);
+    }
+  }
+
+    function incrementRegen() {
+      const hidden = document.querySelector('input[name="regen"]');
+      hidden.value = String(parseInt(hidden.value || "0") + 1);
+    }
+
+    window.addEventListener("DOMContentLoaded", function() {
+      toggleColorFields('{{ form.look_type }}');
+    });
+  </script>
+
+  <script>
+const langSwitch = document.getElementById("langSwitch");
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  if (lang === "en") {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    if (langSwitch) langSwitch.textContent = "AR";
+  } else {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
+    if (langSwitch) langSwitch.textContent = "EN";
+  }
+
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    el.textContent = lang === "en" ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll("[data-ar-placeholder]").forEach(el => {
+    el.placeholder = lang === "en" ? el.dataset.enPlaceholder : el.dataset.arPlaceholder;
+  });
+}
+
+if (langSwitch) {
+  langSwitch.addEventListener("click", function () {
+    const current = localStorage.getItem("lang") || "ar";
+    setLang(current === "ar" ? "en" : "ar");
+  });
+}
+
+setLang(localStorage.getItem("lang") || "ar");
+</script>
+
+</body>
+</html>

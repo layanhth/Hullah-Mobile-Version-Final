@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HULLAH - منسق الإطلالات</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+          <h1 data-ar="حُلّة" data-en="HULLAH">حُلّة</h1>
+          <p data-ar="منسّق الإطلالات الذكي" data-en="Smart Outfit Coordinator">
+            منسّق الإطلالات الذكي
+          </p>
+        </div>
+      </div>
+      <nav class="links">
+        <a href="#about" data-ar="عن حُلّة" data-en="About HULLAH">عن حُلّة</a>
+
+        <a href="#features" data-ar="المميزات" data-en="Features">المميزات</a>
+
+        <a href="/contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+
+        <button type="button" id="themeSwitch" class="theme-switch" aria-label="تبديل الوضع">
+            <span class="switch-text">ON</span>
+            <span class="switch-sun">☀</span>
+            <span class="switch-knob">☾</span>
+        </button>
+
+        <button type="button" id="langSwitch" class="lang-switch">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <span class="badge"
+            data-ar="منصة ذكية لتنسيق الإطلالات النسائية"
+            data-en="Smart Platform for Women's Outfit Coordination">
+        منصة ذكية لتنسيق الإطلالات النسائية
+      </span>
+
+      <h2>
+        <span data-ar="اختاري إطلالتك" data-en="Choose Your Outfit">
+          اختاري إطلالتك
+        </span>
+
+        <span data-ar="بذكاء وجمال" data-en="Smartly and Elegantly">
+          بذكاء وجمال
+        </span>
+      </h2>
+
+      <p
+        data-ar="حُلّة يساعدك على اختيار إطلالة مناسبة بناءً على شكل الجسم، الوزن، الطول، المناسبة، النمط، والألوان المفضلة، ليمنحك اقتراحًا أنيقًا من بيانات أزياء حقيقية."
+        data-en="HULLAH helps you choose a suitable outfit based on body shape, weight, height, occasion, style, and preferred colors to provide elegant suggestions from real fashion data.">
+        حُلّة يساعدك على اختيار إطلالة مناسبة بناءً على شكل الجسم، الوزن، الطول، المناسبة،
+        النمط، والألوان المفضلة، ليمنحك اقتراحًا أنيقًا من بيانات أزياء حقيقية.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-primary"
+           href="{{ url_for('experience') }}"
+           data-ar="بدء التجربة"
+           data-en="Start Experience">
+          بدء التجربة
+        </a>
+
+        <a class="btn btn-secondary"
+           href="#features"
+           data-ar="عرض المميزات"
+           data-en="View Features">
+          عرض المميزات
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong data-ar="ذكي" data-en="Smart">ذكي</strong>
+          <span data-ar="اقتراحات حسب بيانات المستخدم" data-en="Suggestions based on user data">
+            اقتراحات حسب بيانات المستخدم
+          </span>
+        </div>
+
+        <div class="stat">
+          <strong data-ar="عملي" data-en="Practical">عملي</strong>
+          <span data-ar="يعتمد على منتجات واقعية" data-en="Based on real products">
+            يعتمد على منتجات واقعية
+          </span>
+        </div>
+
+        <div class="stat">
+          <strong data-ar="رسمي" data-en="Professional">رسمي</strong>
+          <span data-ar="واجهة أنيقة ومناسبة للمشروع" data-en="Elegant interface suitable for the project">
+            واجهة أنيقة ومناسبة للمشروع
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-preview">
+      <div class="mini-title"
+           data-ar="واجهة اقتراح الإطلالة"
+           data-en="Outfit Suggestion Interface">
+        واجهة اقتراح الإطلالة
+      </div>
+
+      <h3 data-ar="اقتراح مخصص لك" data-en="Personalized Suggestion">
+        اقتراح مخصص لك
+      </h3>
+
+      <div class="preview-box">
+        <div class="row">
+          <div class="field">
+            <label data-ar="المناسبة" data-en="Occasion">المناسبة</label>
+            <div data-ar="حفلة" data-en="Party">حفلة</div>
+          </div>
+
+          <div class="field">
+            <label data-ar="النمط" data-en="Style">النمط</label>
+            <div data-ar="أنيق" data-en="Elegant">أنيق</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label data-ar="شكل الجسم" data-en="Body Shape">شكل الجسم</label>
+            <div data-ar="ساعة رملية" data-en="Hourglass">ساعة رملية</div>
+          </div>
+
+          <div class="field">
+            <label data-ar="اللون" data-en="Color">اللون</label>
+            <div data-ar="أسود" data-en="Black">أسود</div>
+          </div>
+        </div>
+
+        <div class="outfit-grid">
+          <div class="outfit-card">
+            <img src="{{ url_for('static', filename='f3.jpg') }}" alt="Dress">
+            <strong data-ar="فستان" data-en="Dress">فستان</strong>
+            <div data-ar="اقتراح أنيق ومتناسق" data-en="Elegant and coordinated suggestion">
+              اقتراح أنيق ومتناسق
+            </div>
+          </div>
+
+          <div class="outfit-card">
+            <img src="{{ url_for('static', filename='f11.jpg') }}" alt="Dress">
+            <strong data-ar="فستان" data-en="Dress">فستان</strong>
+            <div data-ar="مظهر ناعم ورسمي" data-en="Soft and formal look">
+              مظهر ناعم ورسمي
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="panel">
+          <div class="mini-title" data-ar="عن المشروع" data-en="About the Project">
+            عن المشروع
+          </div>
+
+          <h3 data-ar="ما هي حُلّة؟" data-en="What is HULLAH?">
+            ما هي حُلّة؟
+          </h3>
+          <p
+          data-ar="حُلّة هو نظام توصية ذكي للإطلالات النسائية، يهدف إلى تسهيل اختيار الملابس من خلال فهم خصائص المستخدم وتفضيلاته، ثم مطابقتها مع عناصر أزياء حقيقية للحصول على اقتراح مناسب وواضح وأنيق."
+          data-en="HULLAH is an intelligent recommendation system for women's outfits that simplifies outfit selection by understanding user characteristics and preferences, then matching them with real fashion items to generate elegant and suitable suggestions.">
+          حُلّة هو نظام توصية ذكي للإطلالات النسائية، يهدف إلى تسهيل اختيار الملابس من خلال
+          فهم خصائص المستخدم وتفضيلاته، ثم مطابقتها مع عناصر أزياء حقيقية للحصول على اقتراح
+          مناسب وواضح وأنيق.
+          </p>
+        </div>
+
+        <div class="panel highlight">
+          <div class="mini-title alt" data-ar="الرؤية" data-en="Vision">
+            الرؤية
+          </div>
+
+          <h3 data-ar="موضة أقرب لك" data-en="Fashion Closer to You">
+            موضة أقرب لك
+          </h3>
+          <p
+            data-ar="نطمح إلى تقديم تجربة ذكية تجعل اختيار الإطلالة أسهل وأسرع وأكثر ثقة، من خلال دمج الجمال، التقنية، والتخصيص في واجهة نسائية جذابة وعصرية."
+            data-en="We aim to provide a smart experience that makes choosing an outfit easier, faster, and more confident by combining beauty, technology, and personalization in an attractive and modern interface for women.">
+            نطمح إلى تقديم تجربة ذكية تجعل اختيار الإطلالة أسهل وأسرع وأكثر ثقة، من خلال دمج
+            الجمال، التقنية، والتخصيص في واجهة نسائية جذابة وعصرية.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <p data-ar="المميزات" data-en="Features">المميزات</p>
+
+          <h3 data-ar="لماذا حُلّة مميز؟" data-en="Why is HULLAH Special?">
+            لماذا حُلّة مميز؟
+          </h3>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <div class="icon">♡</div>
+            <h4 data-ar="تخصيص ذكي" data-en="Smart Personalization">تخصيص ذكي</h4>
+            <p
+              data-ar="يعتمد على الطول، الوزن، شكل الجسم، المناسبة، النمط، والألوان المفضلة."
+              data-en="Based on height, weight, body shape, occasion, style, and preferred colors.">
+              يعتمد على الطول، الوزن، شكل الجسم، المناسبة، النمط، والألوان المفضلة.
+           </p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">✿</div>
+            <h4 data-ar="واجهة أنيقة" data-en="Elegant Interface">واجهة أنيقة</h4>
+            <p
+              data-ar="تصميم ناعم وألوان أنثوية تمنح المستخدم تجربة مريحة وجميلة."
+              data-en="A soft design with feminine colors that gives the user a comfortable and pleasant experience.">
+              تصميم ناعم وألوان أنثوية تمنح المستخدم تجربة مريحة وجميلة.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">✦</div>
+            <h4 data-ar="بيانات حقيقية" data-en="Real Data">بيانات حقيقية</h4>
+            <p
+              data-ar="الاقتراحات مبنية على منتجات فعلية من ملفات بيانات الأزياء المتوفرة."
+              data-en="Suggestions are based on real products from the available fashion data files.">
+              الاقتراحات مبنية على منتجات فعلية من ملفات بيانات الأزياء المتوفرة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container cta">
+        <h3
+          data-ar="حُلّة... لأن الإطلالة المناسبة تبدأ منك"
+          data-en="HULLAH... Because the right outfit starts with you">
+          حُلّة... لأن الإطلالة المناسبة تبدأ منك
+        </h3>
+
+        <p
+          data-ar="واجهة رسمية عصرية لمشروع تخرج يجمع بين الذكاء والتنسيق والجمال في تجربة واحدة."
+          data-en="A modern and professional interface for a graduation project that combines intelligence, coordination, and beauty in one experience.">
+          واجهة رسمية عصرية لمشروع تخرج يجمع بين الذكاء والتنسيق والجمال في تجربة واحدة.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer">
+      <div
+      data-ar="© 2026 HULLAH. جميع الحقوق محفوظة."
+      data-en="© 2026 HULLAH. All rights reserved.">
+      © 2026 HULLAH. جميع الحقوق محفوظة.
+      </div>
+      <div>Qassim University • Computer Science Collage • Fashion Recommendation</div>
+    </div>
+  </footer>
+
+  <script>
+    const themeSwitch = document.getElementById("themeSwitch");
+
+    function setTheme(mode) {
+        if (mode === "dark") {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    }
+
+    if (themeSwitch) {
+        themeSwitch.addEventListener("click", function () {
+            if (document.body.classList.contains("dark-mode")) {
+                setTheme("light");
+            } else {
+                setTheme("dark");
+            }
+        });
+    }
+
+    setTheme(localStorage.getItem("theme") || "light");
+</script>
+
+<script>
+const langSwitch = document.getElementById("langSwitch");
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  if (lang === "en") {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    langSwitch.textContent = "AR";
+  } else {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
+    langSwitch.textContent = "EN";
+  }
+
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    el.textContent = lang === "en"
+      ? el.dataset.en
+      : el.dataset.ar;
+  });
+}
+
+langSwitch.addEventListener("click", function () {
+  const current = localStorage.getItem("lang") || "ar";
+  setLang(current === "ar" ? "en" : "ar");
+});
+
+setLang(localStorage.getItem("lang") || "ar");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تواصل معنا | حُلّة</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .contact-page {
+            min-height: calc(100vh - 90px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+        }
+
+        .contact-card {
+            width: min(620px, 92%);
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid #ffe0eb;
+            border-radius: 34px;
+            padding: 52px 42px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(244,114,182,.12);
+        }
+
+        .contact-card .mini-title {
+            color: #e85d98;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card h2 {
+            font-size: 44px;
+            line-height: 1.2;
+            margin: 0 0 18px;
+            color: var(--text);
+        }
+
+        .contact-card p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--muted);
+            margin: 0 0 28px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            padding: 15px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rose), var(--pink));
+            color: #fff;
+            box-shadow: 0 12px 26px rgba(244,114,182,.22);
+        }
+
+        .contact-email:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 950px) {
+            .links {
+                display: flex;
+                justify-content: center;
+            }
+
+            .contact-card h2 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <a href="/" class="brand">
+            <div class="logo">✦</div>
+            <div>
+                <h1 data-ar="حُلّة" data-en="HULLAH">حُلّة</h1>
+                <p data-ar="منسّق الإطلالات الذكي" data-en="Smart Outfit Coordinator">
+                    منسّق الإطلالات الذكي
+                </p>
+            </div>
+        </a>
+
+        <nav class="links">
+            <a href="/" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="/#about" data-ar="عن حُلّة" data-en="About HULLAH">عن حُلّة</a>
+            <a href="/#features" data-ar="المميزات" data-en="Features">المميزات</a>
+            <a href="/contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+
+            <button type="button" id="themeSwitch" class="theme-switch" aria-label="تبديل الوضع">
+                <span class="switch-text">ON</span>
+                <span class="switch-sun">☀</span>
+                <span class="switch-knob">☾</span>
+            </button>
+
+            <button type="button" id="langSwitch" class="lang-switch">EN</button>
+        </nav>
+    </div>
+</header>
+
+<main class="contact-page">
+    <div class="contact-card">
+        <div class="mini-title" data-ar="فريق حُلّة" data-en="HULLAH Team">
+            فريق حُلّة
+        </div>
+
+        <h2 data-ar="تواصل معنا" data-en="Contact Us">
+            تواصل معنا
+        </h2>
+
+        <p
+            data-ar="فريق حُلّة قريب منكم دائمًا، يسعدنا استقبال استفساراتكم واقتراحاتكم عبر البريد الإلكتروني."
+            data-en="The HULLAH team is always close to you. We are happy to receive your questions and suggestions by email.">
+            فريق حُلّة قريب منكم دائمًا، يسعدنا استقبال استفساراتكم واقتراحاتكم عبر البريد الإلكتروني.
+        </p>
+
+        <a class="contact-email" href="mailto:contact@hullahsa.me">
+            contact@hullahsa.me
+        </a>
+    </div>
+</main>
+
+<script>
+    const themeSwitch = document.getElementById("themeSwitch");
+
+    function setTheme(mode) {
+        if (mode === "dark") {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    }
+
+    if (themeSwitch) {
+        themeSwitch.addEventListener("click", function () {
+            if (document.body.classList.contains("dark-mode")) {
+                setTheme("light");
+            } else {
+                setTheme("dark");
+            }
+        });
+    }
+
+    setTheme(localStorage.getItem("theme") || "light");
+</script>
+
+<script>
+    const langSwitch = document.getElementById("langSwitch");
+
+    function setLang(lang) {
+        localStorage.setItem("lang", lang);
+
+        document.title = lang === "en" ? "Contact Us | HULLAH" : "تواصل معنا | حُلّة";
+
+        if (lang === "en") {
+            document.documentElement.lang = "en";
+            document.documentElement.dir = "ltr";
+            if (langSwitch) langSwitch.textContent = "AR";
+        } else {
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
+            if (langSwitch) langSwitch.textContent = "EN";
+        }
+
+        document.querySelectorAll("[data-ar]").forEach(el => {
+            el.textContent = lang === "en" ? el.dataset.en : el.dataset.ar;
+        });
+    }
+
+    if (langSwitch) {
+        langSwitch.addEventListener("click", function () {
+            const current = localStorage.getItem("lang") || "ar";
+            setLang(current === "ar" ? "en" : "ar");
+        });
+    }
+
+    setLang(localStorage.getItem("lang") || "ar");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HULLAH - بدء التجربة</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+          <h1 data-ar="حُلّة" data-en="HULLAH">حُلّة</h1>
+          <p data-ar="منسّق الإطلالات الذكي" data-en="Smart Outfit Coordinator">منسّق الإطلالات الذكي</p>
+        </div>
+      </div>
+
+      <nav class="links">
+        <a href="/" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+        <a href="/#about" data-ar="عن حُلّة" data-en="About HULLAH">عن حُلّة</a>
+        <a href="/#features" data-ar="المميزات" data-en="Features">المميزات</a>
+        <a href="/contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+        <a href="{{ url_for('experience') }}" data-ar="التجربة" data-en="Experience">التجربة</a>
+
+        <button type="button" id="themeSwitch" class="theme-switch" aria-label="تبديل الوضع">
+          <span class="switch-text">ON</span>
+          <span class="switch-sun">☀</span>
+          <span class="switch-knob">☾</span>
+        </button>
+
+        <button type="button" id="langSwitch" class="lang-switch">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero mini-hero">
+      <div class="container">
+        <span class="badge" data-ar="بدء التجربة" data-en="Start Experience">بدء التجربة</span>
+
+        <h2 class="mini-heading">
+          <span data-ar="جرّبي" data-en="Try">جرّبي</span>
+          <span data-ar="نظام حُلّة" data-en="HULLAH System">نظام حُلّة</span>
+        </h2>
+
+        <p class="mini-text"
+          data-ar="اختاري بياناتك، ثم اضغطي إظهار الإطلالة ليظهر لك اقتراح مناسب. وإذا لم تعجبك، استخدمي زر اقتراح إطلالة أخرى."
+          data-en="Enter your information, then click Show Outfit to get a suitable suggestion. If you do not like it, use Suggest Another Outfit.">
+          اختاري بياناتك، ثم اضغطي <strong>إظهار الإطلالة</strong> ليظهر لك اقتراح مناسب.
+          وإذا لم تعجبك، استخدمي زر <strong>اقتراح إطلالة أخرى</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="system" class="system-section top-tight">
+      <div class="container">
+        <form method="POST" class="system-card">
+          <input type="hidden" name="regen" id="regen-input" value="{{ regen }}">
+          <input type="hidden" name="lang" id="lang-input" value="ar">
+
+          <div class="form-grid">
+            <div class="input-box">
+              <label data-ar="الطول (سم)" data-en="Height (cm)">الطول (سم)</label>
+              <input type="number" name="height" min="130" max="200" value="{{ form.height }}" required>
+            </div>
+
+            <div class="input-box">
+              <label data-ar="الوزن (كجم)" data-en="Weight (kg)">الوزن (كجم)</label>
+              <input type="number" name="weight" min="35" max="150" value="{{ form.weight }}" required>
+            </div>
+
+            <div class="input-box">
+              <label data-ar="شكل الجسم" data-en="Body Shape">شكل الجسم</label>
+              <select name="body_shape">
+                {% for item in body_shapes %}
+                <option value="{{ item }}" {% if form.body_shape == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="input-box">
+              <label data-ar="المناسبة" data-en="Occasion">المناسبة</label>
+              <select name="occasion">
+                {% for item in occasions %}
+                <option value="{{ item }}" {% if form.occasion == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="input-box">
+              <label data-ar="نوع الإطلالة" data-en="Outfit Type">نوع الإطلالة</label>
+              <select name="look_type" id="look-type" onchange="toggleColorFields(this.value)">
+                {% for item in look_types %}
+                <option value="{{ item }}" {% if form.look_type == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="input-box">
+              <label data-ar="النمط" data-en="Style">النمط</label>
+              <select name="style">
+                {% for item in styles %}
+                <option value="{{ item }}" {% if form.style == item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="addons-box">
+            <p class="addons-title" data-ar="إضافات الإطلالة" data-en="Outfit Add-ons">إضافات الإطلالة</p>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="include_bag" value="1" {% if form.include_bag %}checked{% endif %}>
+                <span data-ar="إضافة حقيبة" data-en="Add Bag">إضافة حقيبة</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input type="checkbox" name="include_shoes" value="1" {% if form.include_shoes %}checked{% endif %}>
+                <span data-ar="إضافة حذاء" data-en="Add Shoes">إضافة حذاء</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input type="checkbox" name="include_glasses" value="1" {% if form.include_glasses %}checked{% endif %}>
+                <span data-ar="إضافة نظارة" data-en="Add Glasses">إضافة نظارة</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input type="checkbox" name="include_jewelry" value="1" {% if form.include_jewelry %}checked{% endif %}>
+                <span data-ar="إضافة مجوهرات" data-en="Add Jewelry">إضافة مجوهرات</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input type="checkbox" name="include_scarf" value="1" {% if form.include_scarf %}checked{% endif %}>
+                <span data-ar="إضافة شال / قفازات" data-en="Add Scarf / Gloves">إضافة شال / قفازات</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="dual-colors" class="form-grid">
+            <div class="input-box">
+              <label id="top-label" data-ar="اللون المفضل للقطعة العلوية" data-en="Preferred color for the top piece">اللون المفضل للقطعة العلوية</label>
+              <div class="color-palette">
+                {% for c in color_options.top %}
+                <label class="color-circle">
+                  <input type="radio" name="top_color" value="{{ c }}" {% if form.top_color == c %}checked{% endif %}>
+                  <span class="color-box"
+                        data-color="{{ c }}"
+                        data-name="{{ color_labels[c] }}"></span>
+                </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="input-box">
+              <label id="bottom-label" data-ar="اللون المفضل للقطعة السفلية" data-en="Preferred color for the bottom piece">اللون المفضل للقطعة السفلية</label>
+              <div class="color-palette" id="bottom-color-select"></div>
+            </div>
+          </div>
+
+          <div id="single-color-box" class="form-grid hidden">
+            <div class="input-box">
+              <label id="single-label" data-ar="اللون المفضل" data-en="Preferred color">اللون المفضل</label>
+              <div class="color-palette" id="single-color-select"></div>
+            </div>
+          </div>
+
+          <div class="buttons center-buttons">
+            <button
+              id="show-look-btn"
+              class="btn btn-primary"
+              type="submit"
+              onclick="document.getElementById('regen-input').value='0'">
+              <span data-ar="إظهار الإطلالة" data-en="Show Outfit">إظهار الإطلالة</span>
+            </button>
+
+            {% if result %}
+            <button class="btn btn-secondary" type="submit" onclick="incrementRegen()">
+              <span data-ar="اقتراح إطلالة أخرى" data-en="Suggest Another Outfit">اقتراح إطلالة أخرى</span>
+            </button>
+            {% endif %}
+          </div>
+        </form>
+
+        {% if result %}
+        <div class="result-wrap" id="look-result">
+          <h3 class="result-title" data-ar="الإطلالة المقترحة" data-en="Suggested Outfit"> الإطلالة المقترحة</h3>
+
+          <div class="phone-frame outfit-board-frame">
+            <div class="outfit-layout">
+                <div class="left-items">
+                  {% if result.glasses %}
+                  <div class="piece-wrap">
+                    <div class="item accessory-item">
+                      <img id="glasses-image" src="{{ result.glasses.image_url }}" alt="{{ result.glasses.title }}">
+                      {% if result.glasses.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('glasses')">
+                      <span data-ar="تغيير النظارة" data-en="Change Glasses">تغيير النظارة</span>
+                    </button>
+                  </div>
+                  {% endif %}
+
+                  {% if result.shoes %}
+                  <div class="piece-wrap">
+                    <div class="item shoes-item">
+                      <img id="shoes-image" src="{{ result.shoes.image_url }}" alt="{{ result.shoes.title }}">
+                      {% if result.shoes.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('shoes')">
+                      <span data-ar="تغيير الحذاء" data-en="Change Shoes">تغيير الحذاء</span>
+                    </button>
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div class="center-items">
+                  {% if result.single %}
+                  <div class="piece-wrap">
+                    <div class="item main-item">
+                      <img id="single-image" src="{{ result.single.image_url }}" alt="{{ result.single.title }}">
+                      {% if result.single.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('single')">
+                      <span data-ar="تغيير القطعة" data-en="Change Piece">تغيير القطعة</span>
+                    </button>
+                  </div>
+                  {% elif result.top %}
+                  <div class="piece-wrap">
+                    <div class="item main-item">
+                      <img id="top-image" src="{{ result.top.image_url }}" alt="{{ result.top.title }}">
+                      {% if result.top.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('top')">
+                      <span data-ar="تغيير القطعة العلوية" data-en="Change Top Piece">تغيير القطعة العلوية</span>
+                    </button>
+                  </div>
+                  {% endif %}
+
+                  {% if result.bottom %}
+                  <div class="piece-wrap bottom-piece">
+                    <div class="item second-item">
+                      <img id="bottom-image" src="{{ result.bottom.image_url }}" alt="{{ result.bottom.title }}">
+                      {% if result.bottom.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('bottom')">
+                      <span data-ar="تغيير القطعة السفلية" data-en="Change Bottom Piece">تغيير القطعة السفلية</span>
+                    </button>
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div class="side-items">
+                  {% if result.bag %}
+                  <div class="piece-wrap">
+                    <div class="item accessory-item">
+                      <img id="bag-image" src="{{ result.bag.image_url }}" alt="{{ result.bag.title }}">
+                      {% if result.bag.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('bag')">
+                      <span data-ar="تغيير الحقيبة" data-en="Change Bag">تغيير الحقيبة</span>
+                    </button>
+                  </div>
+                  {% endif %}
+
+                  {% if result.jewelry %}
+                  <div class="piece-wrap">
+                    <div class="item accessory-item">
+                      <img id="jewelry-image" src="{{ result.jewelry.image_url }}" alt="{{ result.jewelry.title }}">
+                      {% if result.jewelry.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('jewelry')">
+                      <span data-ar="تغيير المجوهرات" data-en="Change Jewelry">تغيير المجوهرات</span>
+                    </button>
+                  </div>
+                  {% endif %}
+
+                  {% if result.scarf %}
+                  <div class="piece-wrap">
+                    <div class="item accessory-item">
+                      <img id="scarf-image" src="{{ result.scarf.image_url }}" alt="{{ result.scarf.title }}">
+                      {% if result.scarf.product_url %}
+                      <a href="{{ result.shoes.product_url }}" target="_blank" class="overlay-btn" data-ar="فتح المنتج" data-en="Open Product"> فتح المنتج</a>
+                      {% endif %}
+                    </div>
+                    <button type="button" class="regen-piece-btn" onclick="regeneratePiece('scarf')">
+                      <span data-ar="تغيير الشال" data-en="Change Scarf">تغيير الشال</span>
+                    </button>
+                  </div>
+                  {% endif %}
+                </div>
+
+              </div>
+
+              
+
+          {% if result.message %}
+          <p class="empty-card">{{ result.message }}</p>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if result %}
+          <div class="finish-box">
+           <a href="{{ url_for('feedback') }}"
+              class="finish-btn"
+              data-ar="إنهاء التجربة"
+              data-en="Finish Experience">
+              إنهاء التجربة
+            </a>
+           </div>
+        {% endif %}
+      
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const COLOR_OPTIONS = {
+      pants: {{ color_options.pants|tojson }},
+      skirt: {{ color_options.skirt|tojson }},
+      jumpsuit: {{ color_options.jumpsuit|tojson }},
+      dress: {{ color_options.dress|tojson }},
+      set: {{ color_options.set|tojson }}
+    };
+
+    const COLOR_LABELS = {{ color_labels|tojson }};
+
+     const COLOR_TRANSLATIONS = {
+    "أي لون": "Any Color",
+    "أسود": "Black",
+    "أبيض": "White",
+    "بيج": "Beige",
+    "رمادي": "Grey",
+    "وردي": "Pink",
+    "أزرق": "Blue",
+    "كحلي": "Navy",
+    "أخضر": "Green",
+    "أحمر": "Red",
+    "عنابي": "Burgundy",
+    "برتقالي": "Orange",
+    "أصفر": "Yellow",
+    "ذهبي": "Gold",
+    "فضي": "Silver",
+    "بني": "Brown",
+    "متعدد الألوان": "Multicolor"
+  };
+
+    function getLang() {
+    return localStorage.getItem("lang") || "ar";
+  }
+
+    function fillPalette(container, options, selectedValue, inputName) {
+      container.innerHTML = "";
+
+      options.forEach(function(opt) {
+        const label = document.createElement("label");
+        label.className = "color-circle";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = inputName;
+        input.value = opt;
+        if (opt === selectedValue) input.checked = true;
+
+        const span = document.createElement("span");
+        span.className = "color-box";
+        span.setAttribute("data-color", opt);
+        const arColorName = COLOR_LABELS[opt] || opt;
+        const lang = localStorage.getItem("lang") || "ar";
+        span.setAttribute("data-name", lang === "en" ? (COLOR_TRANSLATIONS[arColorName] || arColorName) : arColorName);
+
+        label.appendChild(input);
+        label.appendChild(span);
+        container.appendChild(label);
+      });
+    }
+
+    function toggleColorFields(value) {
+      const dual = document.getElementById("dual-colors");
+      const single = document.getElementById("single-color-box");
+      const bottomLabel = document.getElementById("bottom-label");
+      const singleLabel = document.getElementById("single-label");
+      const bottomSelect = document.getElementById("bottom-color-select");
+      const singleSelect = document.getElementById("single-color-select");
+
+      const currentBottom = "{{ form.bottom_color }}";
+      const currentSingle = "{{ form.single_color }}";
+      const lang = getLang();
+
+      if (value === "بلوزة + بنطالون" || value === "Top + Pants") {
+      dual.classList.remove("hidden");
+      single.classList.add("hidden");
+      bottomLabel.textContent = lang === "en" ? "Preferred color for pants" : "اللون المفضل للبنطالون";
+      fillPalette(bottomSelect, COLOR_OPTIONS.pants, currentBottom, "bottom_color");
+
+    } else if (value === "بلوزة + تنورة" || value === "Top + Skirt") {
+      dual.classList.remove("hidden");
+      single.classList.add("hidden");
+      bottomLabel.textContent = lang === "en" ? "Preferred color for skirt" : "اللون المفضل للتنورة";
+      fillPalette(bottomSelect, COLOR_OPTIONS.skirt, currentBottom, "bottom_color");
+
+    } else if (value === "جمبسوت" || value === "Jumpsuit") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for jumpsuit" : "اللون المفضل للجمبسوت";
+      fillPalette(singleSelect, COLOR_OPTIONS.jumpsuit, currentSingle, "single_color");
+
+    } else if (value === "فستان" || value === "Dress") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for dress" : "اللون المفضل للفستان";
+      fillPalette(singleSelect, COLOR_OPTIONS.dress, currentSingle, "single_color");
+
+    } else if (value === "طقم متناسق" || value === "Matching Set") {
+      dual.classList.add("hidden");
+      single.classList.remove("hidden");
+      singleLabel.textContent = lang === "en" ? "Preferred color for matching set" : "اللون المفضل للطقم المتناسق";
+      fillPalette(singleSelect, COLOR_OPTIONS.set, currentSingle, "single_color");
+    }
+  }
+
+    function incrementRegen() {
+      const hidden = document.getElementById("regen-input");
+      hidden.value = String(parseInt(hidden.value || "0") + 1);
+    }
+
+    window.addEventListener("DOMContentLoaded", function() {
+      toggleColorFields(document.getElementById("look-type").value);
+
+      const result = document.getElementById("look-result");
+      if (result) {
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  </script>
+  <script>
+    const themeSwitch = document.getElementById("themeSwitch");
+
+    function setTheme(mode) {
+        if (mode === "dark") {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    }
+
+    if (themeSwitch) {
+        themeSwitch.addEventListener("click", function () {
+            if (document.body.classList.contains("dark-mode")) {
+                setTheme("light");
+            } else {
+                setTheme("dark");
+            }
+        });
+    }
+
+    setTheme(localStorage.getItem("theme") || "light");
+
+    
+</script>
+<script>
+function getSelectedColor(name) {
+  const checked = document.querySelector(`input[name="${name}"]:checked`);
+  return checked ? checked.value : "أي لون";
+}
+
+function regeneratePiece(pieceType) {
+  const lang = localStorage.getItem("lang") || "ar";
+
+  let color = "أي لون";
+
+  if (pieceType === "top") {
+    color = getSelectedColor("top_color");
+  } else if (pieceType === "bottom") {
+    color = getSelectedColor("bottom_color");
+  } else if (pieceType === "single") {
+    color = getSelectedColor("single_color");
+  }
+
+  fetch(`/regenerate-piece/${pieceType}?color=${encodeURIComponent(color)}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.image_url) {
+        const img = document.getElementById(`${pieceType}-image`);
+        if (img) {
+          img.src = data.image_url + "?t=" + new Date().getTime();
+        }
+
+        const link = document.getElementById(`${pieceType}-link`);
+        if (link && data.product_url) {
+          link.href = data.product_url;
+        }
+      } else {
+        alert(data.error || (lang === "en" ? "No alternative piece is available" : "لا توجد قطعة بديلة"));
+      }
+    })
+    .catch(error => {
+      alert(lang === "en" ? "An error occurred while changing the piece" : "حدث خطأ أثناء تغيير القطعة");
+      console.log(error);
+    });
+}
+</script>
+
+<script>
+const langSwitch = document.getElementById("langSwitch");
+
+const OPTION_TRANSLATIONS = {
+  "كمثري": "Pear",
+  "تفاحة": "Apple",
+  "ساعة رملية": "Hourglass",
+  "مستطيل": "Rectangle",
+  "مثلث مقلوب": "Inverted Triangle",
+
+  "أي مناسبة": "Any Occasion",
+  "حفلة": "Party",
+  "عمل": "Work",
+  "يومي": "Casual",
+  "سفر": "Travel",
+
+  "بلوزة + بنطالون": "Top + Pants",
+  "بلوزة + تنورة": "Top + Skirt",
+  "فستان": "Dress",
+  "جمبسوت": "Jumpsuit",
+  "طقم متناسق": "Matching Set",
+
+  "أي نمط": "Any Style",
+  "كاجوال": "Casual",
+  "كلاسيكي": "Classic",
+  "أنيق": "Chic",
+  "عصري": "Modern",
+  "بسيط": "Minimal",
+};
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  const langInput = document.getElementById("lang-input");
+  if (langInput) {
+    langInput.value = lang;
+  }
+
+  document.title = lang === "en" ? "HULLAH - Start Experience" : "HULLAH - بدء التجربة";
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+
+  if (langSwitch) {
+    langSwitch.textContent = lang === "en" ? "AR" : "EN";
+  }
+
+  document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+    el.textContent = lang === "en" ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll("select option").forEach(option => {
+    if (!option.dataset.originalAr) {
+      option.dataset.originalAr = option.textContent.trim();
+    }
+
+    const arText = option.dataset.originalAr;
+    option.textContent = lang === "en"
+      ? (OPTION_TRANSLATIONS[arText] || arText)
+      : arText;
+  });
+
+   document.querySelectorAll(".color-box").forEach(box => {
+    const arColorName = COLOR_LABELS[box.dataset.color] || box.dataset.color;
+    box.setAttribute(
+      "data-name",
+      lang === "en" ? (COLOR_TRANSLATIONS[arColorName] || arColorName) : arColorName
+    );
+  });
+
+  const lookType = document.getElementById("look-type");
+  if (lookType && typeof toggleColorFields === "function") {
+    toggleColorFields(lookType.value);
+  }
+}
+
+if (langSwitch) {
+  langSwitch.addEventListener("click", function () {
+    const current = localStorage.getItem("lang") || "ar";
+    setLang(current === "ar" ? "en" : "ar");
+  });
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  setLang(localStorage.getItem("lang") || "ar");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title data-ar="تقييم التجربة" data-en="Experience Feedback">تقييم التجربة</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="feedback-page">
+
+
+  <div class="feedback-card">
+    <h1 data-ar="قيّمي تجربتك" data-en="Rate Your Experience">
+      قيّمي تجربتك
+    </h1>
+
+    <p data-ar="رأيك يساعدنا على تطوير حُلّة 💗" data-en="Your feedback helps us improve HULLAH 💗">
+      رأيك يساعدنا على تطوير حُلّة 💗
+    </p>
+
+    <form method="POST">
+      <div class="stars">
+        <input type="radio" id="star5" name="rating" value="5" required>
+        <label for="star5">★</label>
+
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">★</label>
+
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">★</label>
+
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">★</label>
+
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">★</label>
+      </div>
+
+      <textarea
+        name="notes"
+        placeholder="اكتبي ملاحظاتك هنا..."
+        data-ar-placeholder="اكتبي ملاحظاتك هنا..."
+        data-en-placeholder="Write your notes here..."
+        rows="6"></textarea>
+
+      <button
+        type="submit"
+        class="finish-btn"
+        data-ar="إرسال التقييم"
+        data-en="Submit Feedback">
+        إرسال التقييم
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+const langSwitch = document.getElementById("langSwitch");
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  if (lang === "en") {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    if (langSwitch) langSwitch.textContent = "AR";
+  } else {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
+    if (langSwitch) langSwitch.textContent = "EN";
+  }
+
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    el.textContent = lang === "en" ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll("[data-ar-placeholder]").forEach(el => {
+    el.placeholder = lang === "en" ? el.dataset.enPlaceholder : el.dataset.arPlaceholder;
+  });
+}
+
+if (langSwitch) {
+  langSwitch.addEventListener("click", function () {
+    const current = localStorage.getItem("lang") || "ar";
+    setLang(current === "ar" ? "en" : "ar");
+  });
+}
+
+setLang(localStorage.getItem("lang") || "ar");
+</script>
+<script>
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}
+
+applySavedTheme();
+</script>
+
+</body>
+</html>
